@@ -36,5 +36,5 @@ mysql -u root -ppassword -e "DROP DATABASE test;"
 mysql -u root -ppassword -e "CREATE DATABASE pwalk_db;"
 
 # restart
-sudo /etc/init.d/mysql restart
+sudo systemctl restart mysql
 

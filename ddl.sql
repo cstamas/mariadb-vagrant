@@ -1,6 +1,6 @@
-drop table if exists dataTable;
+drop table if exists pwalk_fstat;
 
-create table  dataTable (
+create table  pwalk_fstat (
     `repository` varchar(255) not null,
     `snapshot` varchar(255) not null,
     `inode` bigint(20) default NULL,
@@ -20,15 +20,13 @@ create table  dataTable (
     `ctime` bigint(10) default 0,
     `fileCnt` int default NULL,
     `dirSz` bigint(12) NULL,
-    KEY `uid` (`uid`),
-    KEY `gid` (`gid`),
     KEY `inode` (`inode`)
 ); 
 
-load data local infile  '/home/cstamas/tmp/wlabs-pwalk/thirdparty_20180919.csv'  
-   into table dataTable
+load data local infile  '/home/cstamas/tmp/wlabs-pwalk/thirdparty_20180604.csv'  
+   into table pwalk_fstat
    fields terminated by ',' OPTIONALLY enclosed by '"'
    lines terminated by '\n' 
    (inode, pinode, depth, fname, extension, uid, gid, size, dev, blocks, 
    nlink, mode, atime, mtime, ctime, fileCnt, dirSz )
-   set repository = 'thirdparty', set snapshot='20180919';
+   set repository = 'thirdparty', snapshot='20180604';
