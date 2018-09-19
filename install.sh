@@ -32,6 +32,9 @@ mysql -u root -ppassword -e "DROP USER ''@'$(hostname)';"
 # drop the demo database
 mysql -u root -ppassword -e "DROP DATABASE test;"
 
+# create the pwalk_db database
+mysql -u root -ppassword -e "CREATE DATABASE pwalk_db;"
+
 # restart
 sudo /etc/init.d/mysql restart
 
