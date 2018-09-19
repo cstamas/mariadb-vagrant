@@ -24,8 +24,7 @@ create table  pwalk_fstat (
     `mtime` bigint(10) default 0,
     `ctime` bigint(10) default 0,
     `fileCnt` int default NULL,
-    `dirSz` bigint(12) NULL,
-    KEY `inode` (`inode`)
+    `dirSz` bigint(12) NULL
 ); 
 
 -- LOADING: match repoId and timestamp in filename with that in last row!!!
