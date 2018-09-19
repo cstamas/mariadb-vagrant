@@ -1,3 +1,8 @@
+# DDL
+
+Execute these step-by-step:
+
+```sql
 drop table if exists pwalk_fstat;
 
 create table  pwalk_fstat (
@@ -23,10 +28,15 @@ create table  pwalk_fstat (
     KEY `inode` (`inode`)
 ); 
 
-load data local infile  '/home/cstamas/tmp/wlabs-pwalk/thirdparty_20180604.csv'  
+-- LOADING: match repoId and timestamp in filename with that in last row!!!
+load data local infile  '/path/to/pwalk/csv/<repoId>_<timestamp>.csv'  
    into table pwalk_fstat
    fields terminated by ',' OPTIONALLY enclosed by '"'
    lines terminated by '\n' 
    (inode, pinode, depth, fname, extension, uid, gid, size, dev, blocks, 
    nlink, mode, atime, mtime, ctime, fileCnt, dirSz )
-   set repository = 'thirdparty', snapshot='20180604';
+   set repository = '<repoId>', snapshot='<timestamp>';
+```
+
+Loading may tike some 10-20ish minutes for huge reposes!
+
