@@ -11,8 +11,8 @@ create table  pwalk_fstat (
     `inode` bigint(20) default NULL,
     `pinode` bigint(20) default NULL,
     `depth` int default NULL,
-    `fname` text,
-    `extension` text,
+    `fname` varchar(4096),
+    `extension` varchar(255),
     `uid` bigint(20) default NULL,
     `gid` bigint(20) default NULL,
     `size` bigint(20) default NULL,
@@ -35,7 +35,22 @@ load data local infile  '/path/to/pwalk/csv/<repoId>_<timestamp>.csv'
    (inode, pinode, depth, fname, extension, uid, gid, size, dev, blocks, 
    nlink, mode, atime, mtime, ctime, fileCnt, dirSz )
    set repository = '<repoId>', snapshot='<timestamp>';
+
+ALTER TABLE pwalk_fstat
+  ADD CONSTRAINT pwalk_fstat_pk
+    PRIMARY KEY (inode, snapshot, repository);
+
+  ALTER TABLE pwalk_fstat
+  ADD INDEX pwalk_fstat_inode
+    (inode);
+
+  ALTER TABLE pwalk_fstat
+  ADD INDEX pwalk_fstat_fname
+    (fname);
+
 ```
 
 Loading may tike some 10-20ish minutes for huge reposes!
+
+
 

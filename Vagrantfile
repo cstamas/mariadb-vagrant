@@ -6,11 +6,11 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "centos/7"
-  config.vm.box_check_update = false
-  config.vbguest.auto_update = false
+  config.vm.box_check_update = true
+  config.vbguest.auto_update = true
   
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 8192
     v.cpus = 4
   end
 
